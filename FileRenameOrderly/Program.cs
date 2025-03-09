@@ -14,7 +14,7 @@ var Files = TheFolder.GetFiles();
 Array.Sort(Files, new FileNameSortBy(ascending));
 foreach (var item in Files)
 {
-    if (new[] { ".jpg", ".jpeg", ".png", ".tif" }.Contains(item.Extension))
+    if (new[] { ".jpg", ".jpeg", ".png", ".tif", ".webp" }.Contains(item.Extension))
     {
         string newName = j++.ToString() + item.Extension;
         string newPath = tempPath + @"\" + newName;
