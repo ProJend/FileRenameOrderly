@@ -11,24 +11,30 @@ namespace FileRenameOrderly
     {
         //调用 Windos 的 DLL
         [LibraryImport("Shlwapi.dll", StringMarshalling = StringMarshalling.Utf16)]
-        private static partial int StrCmpLogicalW(string param1, string param2);
+        private static partial int StrCmpLogicalW(string? param1, string? param2);
 
         //前后文件名进行比较。
-        public int Compare(object x, object y)
+        public int Compare(object? x, object? y)
         {
-            if (null == x && null == y)
+            if (x == null && y == null)
             {
                 return 0;
             }
-            if (null == x)
+            if (x == null)
             {
                 return -1;
             }
-            if (null == y)
+            if (y == null)
             {
                 return 1;
             }
-            return sortWay ? StrCmpLogicalW(x.ToString(), y.ToString()) : StrCmpLogicalW(y.ToString(), x.ToString());
+
+            string? strX = x.ToString();
+            string? strY = y.ToString();
+
+            return sortWay
+                ? StrCmpLogicalW(strX, strY)
+                : StrCmpLogicalW(strY, strX);
         }
     }
 }
